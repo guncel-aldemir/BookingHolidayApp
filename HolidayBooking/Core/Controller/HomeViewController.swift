@@ -9,14 +9,19 @@ import UIKit
 
 protocol HomeViewInterface: AnyObject{
     
-    func configureVC()
+    func scrollViewConstraint()
     
-    func stackVC()
+    func searchFieldsConstraints()
     
-     func createDate()
+    func createEntryDate()
     
-    func buttonAction()
+    func createExitDate()
     
+    func searchButtonAction()
+    
+    func configureLocationView()
+    
+    func configureSuggestionView()
 }
 
 final class HomeViewController: UIViewController {
@@ -45,11 +50,14 @@ final class HomeViewController: UIViewController {
         searchText.layer.cornerRadius =  10
         searchText.layer.zPosition = 10
         searchText.tintColor = .black
-        
+        searchText.searchTextField.backgroundColor = .clear
+        searchText.searchTextField.anchorEqualTo(top: searchText.topAnchor, bottom: nil, leading: nil, trailing: nil,padding: .init(top: 0, left: 0, bottom: 0, right: 0), heightConstraint: 100, widthConstraint: searchText.widthAnchor)
         return searchText
     }()
-    // MARK: Date side
     
+    
+    
+    // MARK: Date side
     
     fileprivate let dateEntryTextField: UITextField = {
         let dateText = UITextField()
@@ -68,30 +76,91 @@ final class HomeViewController: UIViewController {
         dateText.borderStyle = .roundedRect
         dateText.layer.cornerRadius = 10
         dateText.textAlignment = .center
+        
+        
         return dateText
     }()
+    
+    fileprivate lazy var datePickerEntryField: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.minimumDate = Date()
+        return datePicker
+    }()
+    
+    fileprivate lazy var datePickerExitField: UIDatePicker = {
+        let dateExitPicker = UIDatePicker()
+        dateExitPicker.datePickerMode = .date
+        
+        dateExitPicker.preferredDatePickerStyle = .inline
+       
+        return dateExitPicker
+    }()
+    // MARK: - Search Button
     
     fileprivate let searchButton: UIButton = {
         let clickButton = UIButton()
         clickButton.setTitle("Search", for: .normal)
-        clickButton.backgroundColor = .systemPink
+        clickButton.backgroundColor = UIColor(hex: "#e07a5f")
         
         clickButton.setTitleColor(.white, for: .normal)
-        clickButton.addTarget(self, action:#selector(buttonAction), for: .touchUpInside)
+        clickButton.addTarget(self, action:#selector(searchButtonAction), for: .touchUpInside)
         
         return clickButton
         
     }()
     
-    fileprivate let datePickerField: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        // datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender: )), for: .valueChanged)
-        datePicker.preferredDatePickerStyle = .inline
-        
-        return datePicker
+    // MARK: - LOCATION HEAD
+    
+    fileprivate let locationTitle: UILabel = {
+       let titleLabel = UILabel()
+        titleLabel.font = .systemFont(ofSize: 25, weight: .bold)
+        titleLabel.textColor = UIColor(hex: "264653")
+        titleLabel.text = "Sık Gidilen Lokasyonlar"
+        titleLabel.numberOfLines = 0
+        titleLabel.text?.localizedUppercase
+        return titleLabel
     }()
     
+    // MARK: - SUGGESTION HEAD
+    
+    fileprivate let suggestionTitle: UILabel = {
+       let suggestionLabel = UILabel()
+        suggestionLabel.font = .systemFont(ofSize: 25, weight: .bold)
+        suggestionLabel.textColor = UIColor(hex: "264653")
+        suggestionLabel.text = "Öne Çıkan Oteller"
+        suggestionLabel.numberOfLines = 0
+        suggestionLabel.text?.localizedUppercase
+        return suggestionLabel
+    }()
+    // MARK: - COLLECTION VIEW SIDE
+
+    fileprivate let collectionViewLocation: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(LocationsCollectionViewCell.self, forCellWithReuseIdentifier: LocationsCollectionViewCell.identifier)
+        collectionView.backgroundColor = nil
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+        
+    }()
+    
+    
+    // MARK: - SUGGESTION COLLECTION VIEW SIDE
+    
+    fileprivate let collectionViewSuggestion: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(SuggestionHotelsCollectionViewCell.self, forCellWithReuseIdentifier: SuggestionHotelsCollectionViewCell.identifier)
+        collectionView.backgroundColor = nil
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+        
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -103,6 +172,7 @@ final class HomeViewController: UIViewController {
         homeModel.view = self
         homeModel.viewDidLoad()
         searchBox.delegate = self
+  
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -116,18 +186,23 @@ final class HomeViewController: UIViewController {
 extension HomeViewController:HomeViewInterface{
     
     
-    func configureVC() {
-        view.backgroundColor = UIColor(hex: "#f4e7fb")
+    //MARK: - ScrollView constraint
+    func scrollViewConstraint() {
+        
+        view.backgroundColor = UIColor(hex: "#e9e3d5")
         
         view.addSubview(homeScrollView)
-        homeScrollView.contentSize = CGSize(width: self.view.frame.size.width, height:  5678)
-        homeScrollView.anchorView(top: self.view.topAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, leading: nil, trailing: nil, widthConstarint: self.view.frame.size.width)
-        homeScrollView.backgroundColor = UIColor(hex: "#f3dcdc")
+        homeScrollView.showsVerticalScrollIndicator = true
+        
+        homeScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1000)
+        homeScrollView.anchorView(top: self.view.topAnchor, bottom: self.view.bottomAnchor, leading: nil, trailing: nil, widthConstarint: self.view.frame.size.width)
+        homeScrollView.backgroundColor = UIColor(hex: "#e9e3d5")
     }
     
-    func stackVC() {
+    // MARK: - Search Textfields constraints
+    func searchFieldsConstraints() {
         homeScrollView.addSubview(searchBox)
-        searchBox.anchorEqualTo(top: homeScrollView.topAnchor, bottom: nil, leading: nil, trailing: nil, heightConstraint: 50, widthConstraint: homeScrollView.widthAnchor)
+        searchBox.anchorEqualTo(top: homeScrollView.topAnchor, bottom: nil, leading: nil, trailing: nil,padding: .init(top: 20, left: 0, bottom: 0, right: 0), heightConstraint: 100, widthConstraint: homeScrollView.widthAnchor)
         
         let stackDate = UIStackView(arrangedSubviews: [dateEntryTextField, dateExitTextField])
         stackDate.axis = .horizontal
@@ -145,47 +220,134 @@ extension HomeViewController:HomeViewInterface{
         buttonStack.alignment = .fill
         homeScrollView.addSubview(buttonStack)
         
-        buttonStack.anchorEqualTo(top: stackDate.bottomAnchor, bottom: nil, leading: homeScrollView.leadingAnchor, trailing: homeScrollView.trailingAnchor,padding: .init(top: 20, left: 0, bottom: 5, right: 0), heightConstraint: 60, widthConstraint: homeScrollView.widthAnchor)
+        buttonStack.anchorEqualTo(top: stackDate.bottomAnchor, bottom: nil, leading: homeScrollView.leadingAnchor, trailing: nil,padding: .init(top: 20, left: 0, bottom: 5, right: 0), heightConstraint: 60, widthConstraint: homeScrollView.widthAnchor)
         
+        homeScrollView.addSubview(locationTitle)
+        locationTitle.anchorEqualTo(top: searchButton.bottomAnchor, bottom: nil, leading: homeScrollView.leadingAnchor, trailing: nil,padding: .init(top: 25, left: 10, bottom: 0, right: 0), heightConstraint: 50, widthConstraint: homeScrollView.widthAnchor)
         
         print("çalıştı")
- 
+        
+        
+        
+    }
+    // MARK: - CollectionView constraints
+    func configureLocationView() {
+        collectionViewLocation.dataSource = self
+        collectionViewLocation.delegate = self
+        homeScrollView.addSubview(collectionViewLocation)
+        
+        collectionViewLocation.anchorEqualTo(top: locationTitle.bottomAnchor, bottom: nil, leading: nil, trailing: nil,padding: .init(top: 20, left: 0, bottom: 0, right: 0), heightConstraint: 160, widthConstraint: homeScrollView.widthAnchor)
+
+        
     }
     
-    func createDate() {
+    func configureSuggestionView(){
+        collectionViewSuggestion.dataSource = self
+        collectionViewSuggestion.delegate = self
+       
+        homeScrollView.addSubview(collectionViewSuggestion)
+        
+        collectionViewSuggestion.anchorEqualTo(top: collectionViewLocation.bottomAnchor, bottom: nil, leading: homeScrollView.leadingAnchor, trailing: self.view.trailingAnchor,padding: .init(top: 10, left: 2, bottom: 0, right: 0), heightConstraint: 450, widthConstraint: self.view.widthAnchor)
+        
+        homeScrollView.addSubview(suggestionTitle)
+        suggestionTitle.anchorEqualTo(top: collectionViewLocation.bottomAnchor, bottom: nil, leading: homeScrollView.leadingAnchor, trailing: nil,padding: .init(top: 25, left: 10, bottom: 0, right: 0), heightConstraint: 50, widthConstraint: homeScrollView.widthAnchor)
+    }
+
+    // MARK: - Search Button Action Side
+    @objc func searchButtonAction() {
+        homeModel?.searchOperation()
+    }
+    
+    // MARK: - Create Entry and Exit Date Side
+    func createEntryDate() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePicker))
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneEntryPicker))
         toolbar.setItems([doneBtn], animated: true)
+        
         dateEntryTextField.inputAccessoryView = toolbar
-        dateEntryTextField.inputView = datePickerField
+        dateEntryTextField.inputView = datePickerEntryField
+        
     }
     
-    @objc func donePicker(){
+    @objc func doneEntryPicker(){
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.dateFormat = "dd.MM.yyyy"
+        datePickerExitField.minimumDate = datePickerEntryField.date
+        dateEntryTextField.text = formatter.string(from: datePickerEntryField.date)
+        
+        
+        homeModel?.entryDateText = dateEntryTextField.text
+        self.view.endEditing(true)
+    }
+    
+    func createExitDate(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneBTN = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneExitPicker))
+        toolBar.setItems([doneBTN], animated: true)
+        
+        dateExitTextField.inputAccessoryView = toolBar
+        dateExitTextField.inputView = datePickerExitField
+        
+    }
+    
+    @objc func doneExitPicker(){
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.dateFormat = "dd.MM.yyyy"
         
-        dateEntryTextField.text = formatter.string(from: datePickerField.date)
-        
+        dateExitTextField.text = formatter.string(from: datePickerExitField.date)
+        homeModel?.exitDateText = dateExitTextField.text
         self.view.endEditing(true)
     }
     
-    
-    
-    @objc func buttonAction() {
-        homeModel?.searchOperation()
-    }
+
     
 }
 
+// MARK: - SEARCHBAR DELEGATE EXTENSION
 extension HomeViewController:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count >= 3 {
             print("view controller  burası oldu \(searchText)")
             homeModel?.searchBarText = searchText
+        }
+    }
+}
+
+// MARK: - COLLECTIONVIEW DELEGATE, DATASOURCE and COLLECTIONVIEWDELEGATEFLOWLAYOUT  EXTENSION
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == self.collectionViewLocation {
+            return 5
+        } else {
+            return 4
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.collectionViewLocation{
+            let cellA = collectionViewLocation.dequeueReusableCell(withReuseIdentifier: LocationsCollectionViewCell.identifier, for: indexPath) as! LocationsCollectionViewCell
+            
+            return cellA
+        } else {
+            let cellB = collectionViewSuggestion.dequeueReusableCell(withReuseIdentifier: SuggestionHotelsCollectionViewCell.identifier, for: indexPath)
+            return cellB
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.collectionViewLocation {
+            return CGSize(width: (self.view.frame.size.width) / 3, height: 150)
+        }
+        else {
+            return CGSize(width: self.view.frame.size.width, height: 300)
         }
     }
 }
