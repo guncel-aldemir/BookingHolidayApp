@@ -12,6 +12,8 @@ class LocationsCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "locationIdentifier"
     
+    let locationNames: [String] = ["Kemer","Manavgat","Belek","Alanya","Kaş"]
+
     fileprivate let locationImages: UIImageView = {
         let imageView = UIImageView(frame: .init(x: 0, y: 0, width: 100, height: 100))
         
@@ -28,6 +30,7 @@ class LocationsCollectionViewCell: UICollectionViewCell {
        let locationText = UILabel()
        
         locationText.font = .systemFont(ofSize: 16, weight: .bold)
+        
         locationText.text = "deneme"
         
         locationText.textColor = UIColor(hex: "#287271")
@@ -35,6 +38,9 @@ class LocationsCollectionViewCell: UICollectionViewCell {
         
         return locationText
     }()
+    func configure(withIndex index: Int){
+        locationTexts.text = locationNames[index]
+    }
     
     func locationStack(){
     

@@ -12,6 +12,8 @@
 		FA9ADA492B2AF607002047D4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */; };
 		FA9ADA4B2B2AF9BC002047D4 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */; };
 		FACDC11F2B2CEE4700A87564 /* LocationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDC11E2B2CEE4700A87564 /* LocationsCollectionViewCell.swift */; };
+		FAE0B3AB2B303C71003AB6EE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0B3AA2B303C71003AB6EE /* SearchViewController.swift */; };
+		FAE0B3AD2B303C88003AB6EE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0B3AC2B303C88003AB6EE /* SearchViewModel.swift */; };
 		FAF4B9D02B2869D100DB31A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4B9CF2B2869D100DB31A1 /* AppDelegate.swift */; };
 		FAF4B9D22B2869D100DB31A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4B9D12B2869D100DB31A1 /* SceneDelegate.swift */; };
 		FAF4B9D42B2869D100DB31A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4B9D32B2869D100DB31A1 /* HomeViewController.swift */; };
@@ -27,6 +29,8 @@
 		FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		FACDC11E2B2CEE4700A87564 /* LocationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAE0B3AA2B303C71003AB6EE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		FAE0B3AC2B303C88003AB6EE /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		FAF4B9CC2B2869D100DB31A1 /* HolidayBooking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolidayBooking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF4B9CF2B2869D100DB31A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF4B9D12B2869D100DB31A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF4B9D32B2869D100DB31A1 /* HomeViewController.swift */,
+				FAE0B3AA2B303C71003AB6EE /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF4B9ED2B2875BE00DB31A1 /* HomeViewModel.swift */,
+				FAE0B3AC2B303C88003AB6EE /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0B3AD2B303C88003AB6EE /* SearchViewModel.swift in Sources */,
+				FAE0B3AB2B303C71003AB6EE /* SearchViewController.swift in Sources */,
 				FA9ADA492B2AF607002047D4 /* UIColor+Ext.swift in Sources */,
 				FAF4B9D42B2869D100DB31A1 /* HomeViewController.swift in Sources */,
 				FAF4B9D02B2869D100DB31A1 /* AppDelegate.swift in Sources */,

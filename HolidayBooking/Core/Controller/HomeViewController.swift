@@ -22,6 +22,10 @@ protocol HomeViewInterface: AnyObject{
     func configureLocationView()
     
     func configureSuggestionView()
+    
+    func showAlert(message:String)
+    
+   
 }
 
 final class HomeViewController: UIViewController {
@@ -107,7 +111,7 @@ final class HomeViewController: UIViewController {
         
         clickButton.setTitleColor(.white, for: .normal)
         clickButton.addTarget(self, action:#selector(searchButtonAction), for: .touchUpInside)
-        
+       
         return clickButton
         
     }()
@@ -184,6 +188,8 @@ final class HomeViewController: UIViewController {
 
 
 extension HomeViewController:HomeViewInterface{
+ 
+    
     
     
     //MARK: - ScrollView constraint
@@ -255,7 +261,22 @@ extension HomeViewController:HomeViewInterface{
 
     // MARK: - Search Button Action Side
     @objc func searchButtonAction() {
-        homeModel?.searchOperation()
+        
+        guard let homeModel = homeModel else {
+            print("ERROR: homeModel is Nil")
+            return
+        }
+
+        if let searchText = searchBox.text{
+            if searchText.count >= 3 {
+                homeModel.searchBarText = searchText
+            }
+        }
+        
+
+        homeModel.searchOperation()
+
+
     }
     
     // MARK: - Create Entry and Exit Date Side
@@ -305,7 +326,12 @@ extension HomeViewController:HomeViewInterface{
         self.view.endEditing(true)
     }
     
-
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Uyarı", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
     
 }
 
@@ -313,10 +339,7 @@ extension HomeViewController:HomeViewInterface{
 extension HomeViewController:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count >= 3 {
-            print("view controller  burası oldu \(searchText)")
-            homeModel?.searchBarText = searchText
-        }
+        
     }
 }
 
@@ -333,7 +356,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionViewLocation{
             let cellA = collectionViewLocation.dequeueReusableCell(withReuseIdentifier: LocationsCollectionViewCell.identifier, for: indexPath) as! LocationsCollectionViewCell
-            
+            cellA.configure(withIndex: indexPath.item)
             return cellA
         } else {
             let cellB = collectionViewSuggestion.dequeueReusableCell(withReuseIdentifier: SuggestionHotelsCollectionViewCell.identifier, for: indexPath)
@@ -342,6 +365,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionViewLocation {
+            let serchViewModel = SearchViewModel()
+            
+            let searchViewController =  SearchViewController(viewModel:serchViewModel)
+
+            navigationController?.pushViewController(searchViewController, animated: true)
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionViewLocation {
             return CGSize(width: (self.view.frame.size.width) / 3, height: 150)
