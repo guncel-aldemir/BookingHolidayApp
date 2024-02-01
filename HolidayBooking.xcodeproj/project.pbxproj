@@ -11,6 +11,18 @@
 		FA89096D2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89096C2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift */; };
 		FA9ADA492B2AF607002047D4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */; };
 		FA9ADA4B2B2AF9BC002047D4 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */; };
+		FABEE20D2B6C096B0063F18F /* GFSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE20C2B6C096B0063F18F /* GFSearchBar.swift */; };
+		FABEE2112B6C0C1D0063F18F /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2102B6C0C1D0063F18F /* GFTextField.swift */; };
+		FABEE2142B6C0D300063F18F /* GFDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2132B6C0D300063F18F /* GFDatePicker.swift */; };
+		FABEE2172B6C0E490063F18F /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2162B6C0E490063F18F /* GFButton.swift */; };
+		FABEE21A2B6C0FA10063F18F /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2192B6C0FA10063F18F /* GFTitleLabel.swift */; };
+		FABEE21C2B6C141D0063F18F /* Deleted-Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE21B2B6C141D0063F18F /* Deleted-Files.swift */; };
+		FABEE2212B6C3B470063F18F /* GFSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2202B6C3B470063F18F /* GFSubtitle.swift */; };
+		FABEE2252B6C422E0063F18F /* GFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2242B6C422E0063F18F /* GFImageView.swift */; };
+		FABEE2272B6C49010063F18F /* GFAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2262B6C49010063F18F /* GFAlert.swift */; };
+		FABEE22A2B6C49730063F18F /* GFContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE2292B6C49730063F18F /* GFContainerView.swift */; };
+		FABEE22C2B6C4A260063F18F /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE22B2B6C4A260063F18F /* GFBodyLabel.swift */; };
+		FABEE22E2B6C4EDF0063F18F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEE22D2B6C4EDF0063F18F /* UIViewController+Ext.swift */; };
 		FACDC11F2B2CEE4700A87564 /* LocationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDC11E2B2CEE4700A87564 /* LocationsCollectionViewCell.swift */; };
 		FAE0B3AB2B303C71003AB6EE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0B3AA2B303C71003AB6EE /* SearchViewController.swift */; };
 		FAE0B3AD2B303C88003AB6EE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0B3AC2B303C88003AB6EE /* SearchViewModel.swift */; };
@@ -28,6 +40,18 @@
 		FA89096C2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionHotelsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		FABEE20C2B6C096B0063F18F /* GFSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSearchBar.swift; sourceTree = "<group>"; };
+		FABEE2102B6C0C1D0063F18F /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
+		FABEE2132B6C0D300063F18F /* GFDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFDatePicker.swift; sourceTree = "<group>"; };
+		FABEE2162B6C0E490063F18F /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
+		FABEE2192B6C0FA10063F18F /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
+		FABEE21B2B6C141D0063F18F /* Deleted-Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deleted-Files.swift"; sourceTree = "<group>"; };
+		FABEE2202B6C3B470063F18F /* GFSubtitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSubtitle.swift; sourceTree = "<group>"; };
+		FABEE2242B6C422E0063F18F /* GFImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFImageView.swift; sourceTree = "<group>"; };
+		FABEE2262B6C49010063F18F /* GFAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlert.swift; sourceTree = "<group>"; };
+		FABEE2292B6C49730063F18F /* GFContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFContainerView.swift; sourceTree = "<group>"; };
+		FABEE22B2B6C4A260063F18F /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
+		FABEE22D2B6C4EDF0063F18F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		FACDC11E2B2CEE4700A87564 /* LocationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAE0B3AA2B303C71003AB6EE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FAE0B3AC2B303C88003AB6EE /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -74,8 +98,83 @@
 			children = (
 				FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */,
 				FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */,
+				FABEE22D2B6C4EDF0063F18F /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FABEE20B2B6C091C0063F18F /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2282B6C49490063F18F /* Alerts */,
+				FABEE2232B6C421C0063F18F /* ImageViews */,
+				FABEE2182B6C0F8D0063F18F /* Labels */,
+				FABEE2152B6C0E3C0063F18F /* Buttons */,
+				FABEE2122B6C0D1D0063F18F /* DatePickers */,
+				FABEE20F2B6C0BCF0063F18F /* TextFields */,
+				FABEE20E2B6C09920063F18F /* SearchBars */,
+				FABEE21B2B6C141D0063F18F /* Deleted-Files.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		FABEE20E2B6C09920063F18F /* SearchBars */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE20C2B6C096B0063F18F /* GFSearchBar.swift */,
+			);
+			path = SearchBars;
+			sourceTree = "<group>";
+		};
+		FABEE20F2B6C0BCF0063F18F /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2102B6C0C1D0063F18F /* GFTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		FABEE2122B6C0D1D0063F18F /* DatePickers */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2132B6C0D300063F18F /* GFDatePicker.swift */,
+			);
+			path = DatePickers;
+			sourceTree = "<group>";
+		};
+		FABEE2152B6C0E3C0063F18F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2162B6C0E490063F18F /* GFButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		FABEE2182B6C0F8D0063F18F /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2192B6C0FA10063F18F /* GFTitleLabel.swift */,
+				FABEE2202B6C3B470063F18F /* GFSubtitle.swift */,
+				FABEE22B2B6C4A260063F18F /* GFBodyLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		FABEE2232B6C421C0063F18F /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2242B6C422E0063F18F /* GFImageView.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
+		FABEE2282B6C49490063F18F /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				FABEE2262B6C49010063F18F /* GFAlert.swift */,
+				FABEE2292B6C49730063F18F /* GFContainerView.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		FAF4B9C32B2869D100DB31A1 = {
@@ -97,6 +196,7 @@
 		FAF4B9CE2B2869D100DB31A1 /* HolidayBooking */ = {
 			isa = PBXGroup;
 			children = (
+				FABEE20B2B6C091C0063F18F /* CustomViews */,
 				FA9ADA472B2AF5EF002047D4 /* Extensions */,
 				FA49DDC92B2897C500A26EED /* Model */,
 				FAF4B9EA2B28739F00DB31A1 /* Services */,
@@ -222,14 +322,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABEE2112B6C0C1D0063F18F /* GFTextField.swift in Sources */,
+				FABEE20D2B6C096B0063F18F /* GFSearchBar.swift in Sources */,
 				FAE0B3AD2B303C88003AB6EE /* SearchViewModel.swift in Sources */,
 				FAE0B3AB2B303C71003AB6EE /* SearchViewController.swift in Sources */,
+				FABEE21C2B6C141D0063F18F /* Deleted-Files.swift in Sources */,
+				FABEE22E2B6C4EDF0063F18F /* UIViewController+Ext.swift in Sources */,
 				FA9ADA492B2AF607002047D4 /* UIColor+Ext.swift in Sources */,
+				FABEE21A2B6C0FA10063F18F /* GFTitleLabel.swift in Sources */,
 				FAF4B9D42B2869D100DB31A1 /* HomeViewController.swift in Sources */,
+				FABEE2252B6C422E0063F18F /* GFImageView.swift in Sources */,
+				FABEE2272B6C49010063F18F /* GFAlert.swift in Sources */,
 				FAF4B9D02B2869D100DB31A1 /* AppDelegate.swift in Sources */,
 				FA49DDCB2B2897FA00A26EED /* NetworkManager.swift in Sources */,
+				FABEE2212B6C3B470063F18F /* GFSubtitle.swift in Sources */,
 				FA89096D2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift in Sources */,
+				FABEE22A2B6C49730063F18F /* GFContainerView.swift in Sources */,
 				FA9ADA4B2B2AF9BC002047D4 /* UIView+Ext.swift in Sources */,
+				FABEE2142B6C0D300063F18F /* GFDatePicker.swift in Sources */,
+				FABEE22C2B6C4A260063F18F /* GFBodyLabel.swift in Sources */,
+				FABEE2172B6C0E490063F18F /* GFButton.swift in Sources */,
 				FACDC11F2B2CEE4700A87564 /* LocationsCollectionViewCell.swift in Sources */,
 				FAF4B9D22B2869D100DB31A1 /* SceneDelegate.swift in Sources */,
 				FAF4B9EE2B2875BE00DB31A1 /* HomeViewModel.swift in Sources */,

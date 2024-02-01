@@ -25,19 +25,7 @@ class LocationsCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
-    fileprivate let locationTexts: UILabel = {
-       let locationText = UILabel()
-       
-        locationText.font = .systemFont(ofSize: 16, weight: .bold)
-        
-        locationText.text = "deneme"
-        
-        locationText.textColor = UIColor(hex: "#287271")
-        locationText.textAlignment = .center
-        
-        return locationText
-    }()
+    let locationTexts = GFSubtitle(text: "deneme", alignment: .center, color: UIColor.init(hex: "287271"), fontSize: 16, fontWeight: .bold)
     func configure(withIndex index: Int){
         locationTexts.text = locationNames[index]
     }
@@ -45,25 +33,26 @@ class LocationsCollectionViewCell: UICollectionViewCell {
     func locationStack(){
     
          let stackLocation = UIStackView(arrangedSubviews: [locationImages, locationTexts])
-         stackLocation.axis = .vertical
-         stackLocation.alignment = .center
+        stackLocation.axis = .vertical
+        stackLocation.alignment = .center
         
          self.addSubview(stackLocation)
-         
-        stackLocation.anchorView(top: self.topAnchor, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 20, left: 0, bottom: 20, right: 0))
-        locationImages.anchorView(top: stackLocation.topAnchor, bottom: locationTexts.topAnchor, leading: nil, trailing: nil, heightConstraint: 100, widthConstarint: 100)
-        locationTexts.anchorView(top: locationImages.bottomAnchor, bottom: stackLocation.bottomAnchor, leading: stackLocation.leadingAnchor, trailing: stackLocation.trailingAnchor,widthConstarint: 125)
-        /*
-         self.addSubview(locationImages)
-         self.addSubview(locationTexts)
-         
-         locationTexts.translatesAutoresizingMaskIntoConstraints = false
-         NSLayoutConstraint.activate([
-             locationTexts.topAnchor.constraint(equalTo: self.locationImages.bottomAnchor, constant: 0),
-             locationTexts.leadingAnchor.constraint(equalTo: self.locationImages.leadingAnchor, constant: 15)
-         ])
-         */
-    
+        stackLocation.translatesAutoresizingMaskIntoConstraints = false
+        locationImages.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+            stackLocation.topAnchor.constraint(equalTo: self.topAnchor,constant: 20),
+            stackLocation.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: 20),
+            stackLocation.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 5),
+            stackLocation.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            
+            locationImages.heightAnchor.constraint(equalToConstant: 100),
+            locationImages.widthAnchor.constraint(equalToConstant: 100),
+            
+        ])
+        
+//      locationImages.anchorView(top: stackLocation.topAnchor, bottom: locationTexts.topAnchor, leading: nil, trailing: nil, heightConstraint: 100, widthConstarint: 100)
+//        locationTexts.anchorView(top: locationImages.bottomAnchor, bottom: stackLocation.bottomAnchor, leading: stackLocation.leadingAnchor, trailing: stackLocation.trailingAnchor,widthConstarint: 125)
+
     }
     override init(frame:CGRect){
         super.init(frame: frame)

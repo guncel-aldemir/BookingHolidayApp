@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol HomeModelInterface :AnyObject{
+protocol HomeModelInterface:AnyObject{
     
     var view: HomeViewInterface? {get set}
     
@@ -23,18 +23,12 @@ protocol HomeModelInterface :AnyObject{
     func searchOperation()
     
     func viewDidAppear()
-    
-    
-    
-    
 }
 
 final class HomeViewModel{
     
     weak var view: HomeViewInterface?
-    
-    
-    
+
     var searchBarText: String?
     
     var entryDateText: String?
@@ -46,8 +40,7 @@ final class HomeViewModel{
 
 
 extension HomeViewModel: HomeModelInterface{
-    
-    
+
     func viewDidAppear() {
         
         view?.createEntryDate()
@@ -59,15 +52,17 @@ extension HomeViewModel: HomeModelInterface{
     func searchOperation() {
         
         if searchBarText == nil {
-            view?.showAlert(message: "Lütfen otel ya da lokayson giriniz")
+            view?.showAlert(title: "Arama Yapmadınız", message: "Lütfen otel ya da lokasyon giriniz", buttonTitle: "Ok")
         } else {
             switch(entryDateText, exitDateText){
             case (nil,nil):
-                view?.showAlert(message: "Lütfen Giriş ve Çıkış Tarihini Giriniz")
+                view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Giriş ve Çıkış Tarihini Giriniz", buttonTitle: "Ok")
+                
             case (_,nil):
-                view?.showAlert(message: "Çıkış Tarihi Girmediniz")
+                view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Çıkış Tarihini Giriniz", buttonTitle: "Ok")
+                
             case (nil,_):
-                view?.showAlert(message: "Giriş Tarihi Girmediniz")
+                view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Giriş Tarihini Giriniz", buttonTitle: "Ok")
             default:
                 break
             }
@@ -82,8 +77,8 @@ extension HomeViewModel: HomeModelInterface{
     
     
     func viewDidLoad() {
-        view?.scrollViewConstraint()
-        view?.searchFieldsConstraints()
+        view?.configureScrollView()
+        view?.configureAll()
         view?.configureLocationView()
         view?.configureSuggestionView()
         print("çlaıştı")

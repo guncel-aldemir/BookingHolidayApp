@@ -12,43 +12,23 @@ class SuggestionHotelsCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "suggestion cell identifier"
     
+    let suggestionHotelCoverImages = GFImageView(frame: .zero)
+   
+    let suggestionHotelTitleLabels = GFSubtitle(text: "Hotel Başlığı", alignment: .center, color: UIColor.init(hex: "3d405b"), fontSize: 18, fontWeight: .bold)
     
-    fileprivate let suggestionHotelCoverImages: UIImageView = {
-       let hotelCoverImage = UIImageView()
-        
-        hotelCoverImage.layer.backgroundColor = UIColor(hex: "#81b29a").cgColor
-        hotelCoverImage.contentMode = .scaleAspectFit
-        hotelCoverImage.layer.cornerRadius = 10
-        hotelCoverImage.clipsToBounds = true
-        return hotelCoverImage
-    }()
-    
-    fileprivate let suggestionHotelTitleLabels:UILabel = {
-       
-        let hotelTitle = UILabel()
-        hotelTitle.text = "Hotel Başlığı"
-        hotelTitle.textColor = UIColor(hex: "3d405b")
-        hotelTitle.font = .systemFont(ofSize: 18, weight: .bold)
-        
-        return hotelTitle
-    }()
-    
-    fileprivate let suggestionHotelLocationLabels:UILabel = {
-       
-        let hotelLocation = UILabel()
-        hotelLocation.text = "📍Kemer/Antalya"
-        hotelLocation.textColor = UIColor(hex: "3d5872")
-        hotelLocation.font = .systemFont(ofSize: 15, weight: .bold)
-        
-        return hotelLocation
-    }()
+    let suggestionHotelLocationLabels = GFSubtitle(text: "📍Kemer/Antalya", alignment: .center, color: UIColor.init(hex: "3d5872"), fontSize: 15, fontWeight: .bold)
     
     
     func suggestionHotelContraints(){
         
         self.addSubview(suggestionHotelCoverImages)
+        NSLayoutConstraint.activate([
+            suggestionHotelCoverImages.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            suggestionHotelCoverImages.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            suggestionHotelCoverImages.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            suggestionHotelCoverImages.heightAnchor.constraint(equalToConstant: 320)
+        ])
         
-        suggestionHotelCoverImages.anchorEqualTo(top: self.topAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 0) ,heightConstraint: 300, widthConstraint: self.widthAnchor)
         
         self.addSubview(suggestionHotelTitleLabels)
         
@@ -56,10 +36,17 @@ class SuggestionHotelsCollectionViewCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.distribution = .fillEqually
         stack.alignment = .leading
-        stack.spacing = 5
+        stack.spacing = 3
       
         self.addSubview(stack)
-        stack.anchorEqualTo(top: suggestionHotelCoverImages.bottomAnchor, bottom: nil, leading: self.leadingAnchor, trailing: nil, padding: .init(top: 0, left: 5, bottom: 0, right: 0), heightConstraint: 60, widthConstraint: self.widthAnchor)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: suggestionHotelCoverImages.bottomAnchor, constant: 5),
+            stack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            stack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            stack.heightAnchor.constraint(equalToConstant: 60)
+        ])
+      
         /*
          suggestionHotelLocationLabels.anchorEqualTo(top: suggestionHotelTitleLabels.bottomAnchor, bottom: nil, leading: self.leadingAnchor, trailing: nil, heightConstraint: 20, widthConstraint: self.widthAnchor)
          */
