@@ -8,13 +8,11 @@
 import UIKit
 
 protocol HomeViewInterface: AnyObject{
-    func configureScrollView()
-    func configureAll()
+    
     func createEntryDate()
     func createExitDate()
     func searchButtonAction()
-    func configureLocationView()
-    func configureSuggestionView()
+    func navigateSearchVC()
     func showAlert(title:String,message:String,buttonTitle:String)
 }
 
@@ -29,7 +27,7 @@ final class HomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: SEARCH FIELD
     let searchBox = GFSearchBar()
     // MARK: Date side
@@ -39,17 +37,17 @@ final class HomeViewController: UIViewController {
     lazy var datePickerExitField = GFDatePicker()
     // MARK: - Search Button
     let searchButton = GFButton(backgroundColor: UIColor(hex: "#e07a5f"), titleColor: .white, title: "Search")
-//        clickButton
-
+    //        clickButton
+    
     // MARK: - LOCATION HEAD
     let locationTitle = GFTitleLabel(text: "Sık Gidilen Lokasyonlar")
-
+    
     // MARK: - SUGGESTION HEAD
     let suggestionTitle = GFTitleLabel(text: "Öne Çıkan Oteller")
     
     var stackDate = UIStackView()
     // MARK: - COLLECTION VIEW SIDE
-
+    
     fileprivate let collectionViewLocation: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -60,7 +58,7 @@ final class HomeViewController: UIViewController {
         return collectionView
         
     }()
-
+    
     // MARK: - SUGGESTION COLLECTION VIEW SIDE
     
     fileprivate let collectionViewSuggestion: UICollectionView = {
@@ -83,6 +81,11 @@ final class HomeViewController: UIViewController {
         homeModel.view = self
         homeModel.viewDidLoad()
         searchBox.delegate = self
+        configureScrollView()
+        configureAll()
+        configureLocationView()
+        configureSuggestionView()
+        createDismissKeyboardTapGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,8 +97,10 @@ final class HomeViewController: UIViewController {
 
 
 extension HomeViewController:HomeViewInterface{
-   
  
+    
+    
+    
     func configureAll() {
         view.backgroundColor = UIColor(hex: "#e9e3d5")
         configureScrollView()
@@ -119,7 +124,7 @@ extension HomeViewController:HomeViewInterface{
             homeScrollView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width),
             homeScrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
-      homeScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1000)
+        homeScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1000)
         
         homeScrollView.backgroundColor = UIColor(hex: "#e9e3d5")
     }
@@ -135,7 +140,7 @@ extension HomeViewController:HomeViewInterface{
             searchBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             searchBox.heightAnchor.constraint(equalToConstant: 70),
         ])
-
+        
     }
     func configureDateField(){
         stackDate = UIStackView(arrangedSubviews: [dateEntryTextField, dateExitTextField])
@@ -151,12 +156,12 @@ extension HomeViewController:HomeViewInterface{
             stackDate.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             stackDate.heightAnchor.constraint(equalToConstant: 60)
         ])
-
+        
         
     }
     func configureSearchButton(){
         searchButton.addTarget(self, action:#selector(searchButtonAction), for: .touchUpInside)
-       
+        
         homeScrollView.addSubview(searchButton)
         NSLayoutConstraint.activate([
             searchButton.topAnchor.constraint(equalTo: stackDate.bottomAnchor, constant: 20),
@@ -165,7 +170,7 @@ extension HomeViewController:HomeViewInterface{
             searchButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -90),
             searchButton.heightAnchor.constraint(equalToConstant: 60)
         ])
-       
+        
         
     }
     func configureLabel(){
@@ -177,10 +182,10 @@ extension HomeViewController:HomeViewInterface{
             locationTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             locationTitle.heightAnchor.constraint(equalToConstant: 40)
         ])
-       
+        
         
     }
-  
+    
     // MARK: - CollectionView constraints
     func configureLocationView() {
         collectionViewLocation.dataSource = self
@@ -199,7 +204,7 @@ extension HomeViewController:HomeViewInterface{
     func configureSuggestionView(){
         collectionViewSuggestion.dataSource = self
         collectionViewSuggestion.delegate = self
-       
+        
         homeScrollView.addSubview(collectionViewSuggestion)
         homeScrollView.addSubview(suggestionTitle)
         suggestionTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -215,34 +220,39 @@ extension HomeViewController:HomeViewInterface{
             collectionViewSuggestion.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -4),
             collectionViewSuggestion.heightAnchor.constraint(equalToConstant: 450)
         ])
-
+        
         
     }
-
+    
     // MARK: - Search Button Action Side
     @objc func searchButtonAction() {
-        
         guard let homeModel = homeModel else {
             print("ERROR: homeModel is Nil")
             return
         }
-
         if let searchText = searchBox.text{
-            if searchText.count >= 3 {
-                homeModel.searchBarText = searchText
-            }
+            homeModel.searchBarText = searchText
         }
-        homeModel.searchOperation()
+            homeModel.searchOperation()
+        
+    }
+    func navigateSearchVC() {
+       
+        guard let homeModel = homeModel else {
+            print("ERROR: homeModel is Nil")
+            return
+        }
+        let searchVC = SearchViewController(viewModel:SearchViewModel(),searchText: homeModel.searchBarText!, entryDate: homeModel.entryDateText!, exitDate: homeModel.exitDateText!)
+        navigationController?.pushViewController(searchVC, animated: true)
+        
     }
     
     // MARK: - Create Entry and Exit Date Side
     func createEntryDate() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneEntryPicker))
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: #selector(doneEntryPicker))
         toolbar.setItems([doneBtn], animated: true)
-        
         dateEntryTextField.inputAccessoryView = toolbar
         dateEntryTextField.inputView = datePickerEntryField
         
@@ -257,7 +267,12 @@ extension HomeViewController:HomeViewInterface{
         
         
         homeModel?.entryDateText = dateEntryTextField.text
-        self.view.endEditing(true)
+        dateEntryTextField.resignFirstResponder()
+    }
+    
+    func createDismissKeyboardTapGesture(){
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     func createExitDate(){
@@ -284,11 +299,11 @@ extension HomeViewController:HomeViewInterface{
     
     func showAlert(title: String, message: String, buttonTitle: String){
         presentGFAlert(title: title, message: message, buttonTitle: buttonTitle)
-//        let alert = UIAlertController(title: "Uyarı", message: message, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-//        alert.addAction(okAction)
-//        present(alert, animated: true, completion: nil)
-   
+        //        let alert = UIAlertController(title: "Uyarı", message: message, preferredStyle: .alert)
+        //        let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+        //        alert.addAction(okAction)
+        //        present(alert, animated: true, completion: nil)
+        
     }
 }
 
@@ -324,11 +339,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionViewLocation {
-            let serchViewModel = SearchViewModel()
-            
-            let searchViewController =  SearchViewController(viewModel:serchViewModel)
-
-            navigationController?.pushViewController(searchViewController, animated: true)
+//            let serchViewModel = SearchViewModel()
+//            
+//            let searchViewController =  SearchViewController(viewModel:serchViewModel,searchText: homeModel?.searchBarText!)
+//            
+//            navigationController?.pushViewController(searchViewController, animated: true)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA49DDCB2B2897FA00A26EED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49DDCA2B2897FA00A26EED /* NetworkManager.swift */; };
+		FA73ED082B6D93BC0080A1EF /* GFCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73ED072B6D93BC0080A1EF /* GFCollectionView.swift */; };
 		FA89096D2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89096C2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift */; };
 		FA9ADA492B2AF607002047D4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */; };
 		FA9ADA4B2B2AF9BC002047D4 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		FA49DDCA2B2897FA00A26EED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		FA73ED072B6D93BC0080A1EF /* GFCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFCollectionView.swift; sourceTree = "<group>"; };
 		FA89096C2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionHotelsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA9ADA482B2AF607002047D4 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		FA9ADA4A2B2AF9BC002047D4 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FA73ED062B6D93A80080A1EF /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA73ED072B6D93BC0080A1EF /* GFCollectionView.swift */,
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
 		FA9ADA462B2AEF2E002047D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		FABEE20B2B6C091C0063F18F /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				FA73ED062B6D93A80080A1EF /* CollectionViews */,
 				FABEE2282B6C49490063F18F /* Alerts */,
 				FABEE2232B6C421C0063F18F /* ImageViews */,
 				FABEE2182B6C0F8D0063F18F /* Labels */,
@@ -335,6 +346,7 @@
 				FABEE2272B6C49010063F18F /* GFAlert.swift in Sources */,
 				FAF4B9D02B2869D100DB31A1 /* AppDelegate.swift in Sources */,
 				FA49DDCB2B2897FA00A26EED /* NetworkManager.swift in Sources */,
+				FA73ED082B6D93BC0080A1EF /* GFCollectionView.swift in Sources */,
 				FABEE2212B6C3B470063F18F /* GFSubtitle.swift in Sources */,
 				FA89096D2B2E23C60063B0DD /* SuggestionHotelsCollectionViewCell.swift in Sources */,
 				FABEE22A2B6C49730063F18F /* GFContainerView.swift in Sources */,

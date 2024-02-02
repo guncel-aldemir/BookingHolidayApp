@@ -14,9 +14,7 @@ protocol SearchViewModelInterface {
     var view:SearchControllerInterface? { get set}
     
     func viewDidLoad()
-    
- 
-    
+
     var searchBoxKey:String? { get set}
     var searchEntryDate:String? {get set}
     var searchExitDate:String? {get set}
@@ -36,15 +34,12 @@ class SearchViewModel {
 
 extension SearchViewModel:SearchViewModelInterface{
    
-    
-    
-   
-    
-
     func viewDidLoad() {
-       // print("search key ==> \(searchBoxKey)")
+        
         view?.setupUI()
-        print("burası searchDetails ====> \(self.searchBoxKey), giriş : \(self.searchEntryDate), çıkış: \(self.searchExitDate)")
+        print("search key ==> \(searchBoxKey)")
+        print("entry key ==> \(searchEntryDate)")
+        print("exit key ==> \(searchExitDate)")
     }
     
     

@@ -11,14 +11,21 @@ import UIKit
 protocol SearchControllerInterface : AnyObject {
     
     func setupUI()
+   
 }
 class SearchViewController: UIViewController {
-
+    var searchText :String = ""
+    var entryDateText:String = ""
+    var exitDateText:String = ""
+    
     var searchModel: SearchViewModel?
     
-    init(viewModel:SearchViewModel){
-        self.searchModel = viewModel
+    init(viewModel:SearchViewModel,searchText:String,entryDate:String, exitDate:String){
         super.init(nibName: nil, bundle: nil)
+        self.searchModel = viewModel
+        self.searchText = searchText
+        self.entryDateText = entryDate
+        self.exitDateText = exitDate
     }
     
     required init?(coder: NSCoder) {
@@ -45,5 +52,10 @@ extension SearchViewController: SearchControllerInterface{
     
     func setupUI() {
         view.backgroundColor = .purple
+        searchModel?.searchBoxKey = searchText
+        searchModel?.searchEntryDate = entryDateText
+        searchModel?.searchExitDate = exitDateText
     }
+    
+    
 }

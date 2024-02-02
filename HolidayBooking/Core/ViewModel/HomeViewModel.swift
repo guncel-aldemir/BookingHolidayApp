@@ -35,7 +35,8 @@ final class HomeViewModel{
     
     var exitDateText: String?
     
-    
+    var searchVC : UIViewController?
+ 
 }
 
 
@@ -50,37 +51,40 @@ extension HomeViewModel: HomeModelInterface{
     }
     
     func searchOperation() {
-        
-        if searchBarText == nil {
-            view?.showAlert(title: "Arama Yapmadınız", message: "Lütfen otel ya da lokasyon giriniz", buttonTitle: "Ok")
-        } else {
-            switch(entryDateText, exitDateText){
-            case (nil,nil):
-                view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Giriş ve Çıkış Tarihini Giriniz", buttonTitle: "Ok")
+       
+        if let searchBarText = searchBarText{
+            if searchBarText.count >= 3 {
                 
-            case (_,nil):
-                view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Çıkış Tarihini Giriniz", buttonTitle: "Ok")
+                switch(entryDateText, exitDateText){
+                case (nil,nil):
+                    view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Giriş ve Çıkış Tarihini Giriniz", buttonTitle: "Ok")
+                case (nil,_):
+                    view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Giriş Tarihini Giriniz", buttonTitle: "Ok")
+                case (_,nil):
+                    view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Çıkış Tarihini Giriniz", buttonTitle: "Ok")
+
+                default:
+                    
+                    view?.navigateSearchVC()
+                }
                 
-            case (nil,_):
-                view?.showAlert(title: "Tarih Seçimi Hatalı", message: "Lütfen Giriş Tarihini Giriniz", buttonTitle: "Ok")
-            default:
-                break
+            }else {
+                view?.showAlert(title: "Arama Yapmadınız", message: "Lütfen otel ya da lokasyon giriniz", buttonTitle: "Ok")
             }
+            
         }
-        print("SearchBarText: \(searchBarText)")
-        print("EntryDateText: \(entryDateText)")
-        print("ExitDateText: \(exitDateText)")
-        print("view model side \(searchBarText)")
-        
+  
         
     }
     
     
     func viewDidLoad() {
-        view?.configureScrollView()
-        view?.configureAll()
-        view?.configureLocationView()
-        view?.configureSuggestionView()
+//        view?.configureScrollView()
+//        view?.configureAll()
+//        view?.configureLocationView()
+//        view?.configureSuggestionView()
+       // view?.createDismissKeyboardTapGesture()
+        
         print("çlaıştı")
     }
     
